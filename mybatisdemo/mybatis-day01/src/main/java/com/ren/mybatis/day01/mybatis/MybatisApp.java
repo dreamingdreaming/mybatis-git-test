@@ -20,11 +20,11 @@ import java.util.List;
  * @author renl
  * @date 2018-11-19
  */
-public class MybatisApp {
+public class MybatisApp{
+    String resource = "mybatis-config.xml";
     private SqlSessionFactory sqlSessionFactory;
     public List<User> findAll() {
         List<User> userList;
-        String resource = "mybatis-config.xml";
         InputStream inputStream = null;
         try {
             inputStream = Resources.getResourceAsStream(resource);
@@ -36,14 +36,15 @@ public class MybatisApp {
         //第一种方式
         //userList = ((SqlSession) sqlSession).selectList("com.ren.mybatis.day01.dao.UserMapper.findAll");
         //第二种方式
+        //获得接口的代理人的实现类
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         userList = mapper.findAll();
+        sqlSession.close();
         return userList;
     }
 
         public User findUserById(int id){
         User user;
-        String resource = "mybatis-config.xml";
         InputStream inputStream = null;
         try {
             inputStream = Resources.getResourceAsStream(resource);
@@ -52,10 +53,56 @@ public class MybatisApp {
         }
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        user = ((SqlSession) sqlSession).selectOne("com.ren.mybatis.day01.dao.UserMapper.findUserById",id);
-
+        user = sqlSession.selectOne("com.ren.mybatis.day01.dao.UserMapper.findUserById",id);
+        sqlSession.close();
         return user;
     }
+    public int delUserById(int id){
+        int result = 0;
+        InputStream inputStream = null;
+        try {
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        result = sqlSession.delete("com.ren.mybatis.day01.dao.UserMapper.delUserById",id);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
+    }
+    public int insertUser(User user){
+        int result = 0;
+        InputStream inputStream = null;
+        try {
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        result = sqlSession.insert("com.ren.mybatis.day01.dao.UserMapper.insertUser",user);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
+    }
+    public int modifyUserById(User user){
+        int result = 0;
+        InputStream inputStream = null;
+        try {
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        result = sqlSession.insert("com.ren.mybatis.day01.dao.UserMapper.modifyUserById",user);
+        sqlSession.commit();
+        sqlSession.close();
+        return result;
+    }
+
 
 
 }

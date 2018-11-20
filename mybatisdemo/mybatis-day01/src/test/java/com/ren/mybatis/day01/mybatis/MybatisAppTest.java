@@ -28,7 +28,7 @@ public class MybatisAppTest {
     }
     @Test
     public void findUserById(){
-        User user  = mybatisApp.findUserById(10);
+        User user  = mybatisApp.findUserById(1);
         if (user!=null){
             System.out.println("姓名："+user.getU_name()+",年龄"+user.getAge());
         }
@@ -37,6 +37,51 @@ public class MybatisAppTest {
         }
 
     }
+    @Test
+    public void delUserById(){
+        int result=0;
+            result = mybatisApp.delUserById(1);
+        if (result>0){
+            System.out.println("删除成功！");
+        }
+        else {
+            System.out.println("没有找到该用户！");
+        }
+    }
+    @Test
+    public void  insertUser(){
+        int result = 0 ;
+        User user =new User();
+        user.setU_name("renl88");
+        user.setPassword("1230");
+        user.setAge(18);
+        result = mybatisApp.insertUser(user);
+        if (result>0){
+            System.out.println("插入成功！");
+        }
+        else {
+            System.out.println("插入数据有误！");
+        }
+    }
+    @Test
+    public  void  modifyUserById(){
+        int result = 0 ;
+        User user =new User();
+        user.setU_name("rn");
+        user.setPassword("123");
+        user.setAge(28);
+        user.setId((long)3);
+        result = mybatisApp.modifyUserById(user);
+        if (result>0){
+            System.out.println("修改成功！");
+        }
+        else {
+            System.out.println("修改数据有误！");
+        }
+    }
+
+
+
 
 
 }

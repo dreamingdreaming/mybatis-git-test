@@ -10,5 +10,7 @@ public interface UserMapper {
      */
     public List<User> findAll();
     public User findUserById(int id);
-
+    public int delUserById(int id);
+    public int insertUser(User user);
+    public int modifyUserById(User user);
 }
