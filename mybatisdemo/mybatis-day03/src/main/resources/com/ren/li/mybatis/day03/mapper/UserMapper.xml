@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ren.li.mybatis.day03.mapper.UserMapper">
+
+    <resultMap id="result" type="user">
+        <id column="id" property="id"/>
+        <result column="u_name" property="u_name"/>
+        <result column="password" property="password"/>
+        <result column="age" property="age"/>
+        <association property="role" javaType="role">
+            <id column="rid" property="rid"/>
+            <result column="r_name" property="r_name"/>
+            <collection property="permissonList" ofType="permisson">
+                <id column="id" property="id"/>
+                <result column="name" property="name"/>
+                <result column="rid" property="rid"/>
+            </collection>
+        </association>
+    </resultMap>
+    <select id="selectAll"  resultMap="result">
+      select  * from  user u join role r on r.rid=u.rid
+      join permisson p on p.rid=r.rid
+    </select>
+
+</mapper>

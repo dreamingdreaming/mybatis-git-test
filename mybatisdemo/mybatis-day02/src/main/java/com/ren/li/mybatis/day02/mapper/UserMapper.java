@@ -1,6 +1,7 @@
 package com.ren.li.mybatis.day02.mapper;
 
 import com.ren.li.mybatis.day02.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,4 +45,5 @@ public interface UserMapper {
      */
     int delUserById(Long id);
 
+    List<User> selectByNameAndAge(@Param("u_name") String name ,@Param("age") int age);
 }

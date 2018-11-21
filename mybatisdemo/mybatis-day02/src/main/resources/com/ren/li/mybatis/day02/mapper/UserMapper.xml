@@ -21,4 +21,7 @@
         select * from user where id = #{id}
     </select>
 
+    <select id="selectByNameAndAge" resultType="com.ren.li.mybatis.day02.pojo.User">
+        select *from user where  u_name  = #{u_name} and age = #{age}
+    </select>
 </mapper>

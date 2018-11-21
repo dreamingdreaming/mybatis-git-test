@@ -2,6 +2,7 @@ package com.ren.li.mybatis.day02.mapper;
 
 import com.ren.li.mybatis.day02.util.SqlSessionFactoryUtil;
 import com.ren.li.mybatis.day02.pojo.User;
+import lombok.ToString;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -92,5 +93,15 @@ public class UserMapperTest {
         }
         sqlSession.close();
 
+    }
+    @Test
+    public  void selectByNameAndAge(){
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = mapper.selectByNameAndAge("renl", 16);
+        for (User user : userList) {
+            System.out.println(user);
+        }
+        sqlSession.close();
     }
 }

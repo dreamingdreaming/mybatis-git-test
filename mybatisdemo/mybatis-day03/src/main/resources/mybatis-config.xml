@@ -5,7 +5,9 @@
 <configuration>
     <!--先加载内部标签，再加载外部文件，名称一致，会替换内容-->
     <properties resource="jdbc.properties">
+<!--
         <property name="jdbc.url" value="123"/>
+-->
     </properties>
     <settings>
         <!--log4j日志-->
@@ -16,7 +18,7 @@
 
     <!--配置别名-->
     <typeAliases>
-        <package name="com.ren.li.mybatis.day02.pojo"/>
+        <package name="com.ren.li.mybatis.day03.pojo"/>
     </typeAliases>
 
     <!--配置环境-->
@@ -37,11 +39,6 @@
 
     <!--配置映射文件-->
     <mappers>
-        <!--一个一个mapper.xml文件的写上去-->
-<!--
-        <mapper resource="mapper/UserMapper.xml"/>
--->
-        <!--package 一整个包 ， 必须和main里的mapper路径一样-->
-        <package name="com.ren.li.mybatis.day02.mapper"/>
+        <package name="com.ren.li.mybatis.day03.mapper"/>
     </mappers>
 </configuration>
