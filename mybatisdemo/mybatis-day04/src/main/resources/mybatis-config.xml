@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--先加载内部标签，再加载外部文件，名称一致，会替换内容-->
+    <properties resource="jdbc.properties">
+        <!--
+                <property name="jdbc.url" value="123"/>
+        -->
+    </properties>
+    <settings>
+        <!--log4j日志-->
+        <setting name="logImpl" value="LOG4J"/>
+        <!--缓存-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <!--配置别名-->
+    <typeAliases>
+        <package name="com.ren.li.mybatis.day04.pojo"/>
+    </typeAliases>
+
+    <!--配置环境-->
+    <environments default="dev">
+        <!--具体的环境-->
+        <environment id="dev">
+            <!--配置事务管理-->
+            <transactionManager type="JDBC"/>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.Driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--配置映射文件-->
+    <mappers>
+        <package name="com.ren.li.mybatis.day04.mapper"/>
+    </mappers>
+</configuration>
