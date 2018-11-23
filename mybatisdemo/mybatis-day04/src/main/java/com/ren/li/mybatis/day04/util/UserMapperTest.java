@@ -1,5 +1,6 @@
-package com.ren.li.mybatis.day04.mapper;
+package com.ren.li.mybatis.day04.util;
 
+import com.ren.li.mybatis.day04.mapper.UserMapper;
 import com.ren.li.mybatis.day04.pojo.User;
 import com.ren.li.mybatis.day04.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;

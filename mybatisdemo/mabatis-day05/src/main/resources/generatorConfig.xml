@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+   <!-- 配置驱动的绝对地址-->
+    <properties resource="jdbc.properties"/>
+    <classPathEntry location="C:\Users\25189\.m2\repository\mysql\mysql-connector-java\5.1.47\mysql-connector-java-5.1.47.jar"/>
+
+    <context id="mysql" targetRuntime="MYBATIS3SIMPLE">
+        <!--配置注解信息-->
+        <commentGenerator>
+            <!--是否不使用文档注释-->
+            <property name="suppressAllComments" value="true"/>
+            <!--是否不把时间放到注释中-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--配置jdbc驱动信息-->
+        <jdbcConnection driverClass="${jdbc.Driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}"/>
+        <!--配置java中的pojo-->
+        <javaModelGenerator targetPackage="com.ren.li.mybatis.day05.pojo" targetProject=".\src\main\java">
+            <!--是否添加子包-->
+            <property name="enableSubPackages" value="true"/>
+            <!--是否去除空格-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--配置mapper的xml映射文件信息-->
+        <sqlMapGenerator targetPackage="com.ren.li.mybatis.day05.mapper" targetProject=".\src\main\resources">
+            <!--是否添加子包-->
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--配置mapper接口信息-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ren.li.mybatis.day05.mapper" targetProject=".\src\main\java">
+            <!--是否添加子包-->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--配置需要逆向的表的表信息-->
+        <table tableName="user">
+        </table>
+    </context>
+</generatorConfiguration>
